@@ -49,10 +49,12 @@ exports.googleOauthCallbak = function(req, res){
             url: "https://www.googleapis.com/plus/v1/people/me?access_token=" + token.access_token
         };
 
-        request(options, userInfoCallback);
+        request(options, function(error, response, body){
+            userInfoCallback(error, response, body, token.access_token);
+        });
     }
 
-    function userInfoCallback(error, response, body) {
+    function userInfoCallback(error, response, body, token) {
         if (error) {
             return console.error('failed:', error);
         }
