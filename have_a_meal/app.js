@@ -34,10 +34,6 @@ app.get('/users', user.list);
 app.get('/googleOauth', user.googleOauth);
 app.get('/auth/google/callback', user.googleOauthCallbak);
 
-app.get('/mongoose', mongoose.page);
-app.get('/mongoose/open', mongoose.open);
-app.get('/mongoose/insertUserInfo', mongoose.insertUserInfo);
-
 http.createServer(app).listen(app.get('port'), function(){
   console.log('Express server listening on port ' + app.get('port'));
 });
