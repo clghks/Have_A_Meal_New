@@ -3,12 +3,14 @@
  * Module dependencies.
  */
 
+require('./routes/mongoose_init');
 var express = require('express');
 var routes = require('./routes');
 var user = require('./routes/user');
-var mongoose = require('./routes/mongoose');
 var http = require('http');
 var path = require('path');
+var dbconnect = require('./routes/db_connect');
+
 
 var app = express();
 
@@ -33,6 +35,12 @@ app.get('/', routes.index);
 app.get('/users', user.list);
 app.get('/googleOauth', user.googleOauth);
 app.get('/auth/google/callback', user.googleOauthCallbak);
+
+app.post('/insert/contents', dbconnect.insertMongoDBContentsInfo);
+app.get('/select/contents', dbconnect.selectMongoDBContentsInfo);
+
+app.post('/insert/replay', dbconnect.insertMongoDBReplayContentsInfo);
+app.get('/select/replay', dbconnect.selectMongoDBReplayContentsInfo);
 
 http.createServer(app).listen(app.get('port'), function(){
   console.log('Express server listening on port ' + app.get('port'));

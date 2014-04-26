@@ -11,7 +11,7 @@ var URL_ACCECC_TOKEN = 'https://www.googleapis.com/plus/v1/people/me?access_toke
 
 var request = require('request');
 var mongoose = require('mongoose');
-var dbInsert = require('./mongoose');
+var dbInsert = require('./db_connect');
 
 exports.list = function(req, res){
   res.send("respond with a resource");
