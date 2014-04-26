@@ -38,9 +38,11 @@ app.get('/auth/google/callback', user.googleOauthCallbak);
 
 app.post('/insert/contents', dbconnect.insertMongoDBContentsInfo);
 app.get('/select/contents', dbconnect.selectMongoDBContentsInfo);
+app.del('/delete/contents', dbconnect.removeMongoDBContentsInfo);
 
 app.post('/insert/replay', dbconnect.insertMongoDBReplayContentsInfo);
 app.get('/select/replay', dbconnect.selectMongoDBReplayContentsInfo);
+app.del('/delete/replay', dbconnect.removeMongoDBReplayContentsInfo);
 
 http.createServer(app).listen(app.get('port'), function(){
   console.log('Express server listening on port ' + app.get('port'));

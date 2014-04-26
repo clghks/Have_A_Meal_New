@@ -29,6 +29,16 @@ exports.selectMongoDBContentsInfo = function(req, res){
     });
 };
 
+exports.removeMongoDBContentsInfo = function(req, res){
+    console.log('req.query = ' + req.query);
+    var contents = Contents.remove(req.query, function(err, contents){
+        if (err){
+            return res.send(err.message);;
+        }
+        res.send("Success");
+    });
+};
+
 exports.insertMongoDBReplayContentsInfo = function(req, res){
     var replayContents = new ReplayContents(req.body);
 
@@ -50,6 +60,16 @@ exports.selectMongoDBReplayContentsInfo = function(req, res){
         contents.forEach(function (prop) {
             console.log('id = ' + prop.get('userId'));
         });
+        res.send("Success");
+    });
+};
+
+exports.removeMongoDBReplayContentsInfo = function(req, res){
+    console.log('req.query = ' + req.query);
+    var replayContents = ReplayContents.remove(req.query, function(err, contents){
+        if (err){
+            return res.send(err.message);;
+        }
         res.send("Success");
     });
 };

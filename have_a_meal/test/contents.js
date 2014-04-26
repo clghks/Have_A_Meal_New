@@ -12,7 +12,7 @@ var querystring = require('querystring');
 
 var HOST_URL = 'http://localhost:3000';
 
-describe('contents', function(){
+describe('insert_contents', function(){
     describe('testContents', function(){
         it('insert Contents Result : ', function(done){
             request.post({
@@ -41,7 +41,7 @@ describe('contents', function(){
     })
 })
 
-describe('contents', function(){
+describe('select_contents', function(){
     describe('testContents', function(){
         it('select Contents Result : ', function(done){
             var param = {userId: 'cccc@gmail.com'};
@@ -53,7 +53,19 @@ describe('contents', function(){
     })
 })
 
-describe('insert_contents', function(){
+describe('delete_contents', function(){
+    describe('testContents', function(){
+        it('select Contents Result : ', function(done){
+            var param = {userId: 'cccc@gmail.com'};
+            request.del(HOST_URL + '/delete/contents?' + querystring.stringify(param), function(error, response, body){
+                assert.equal('Success', body);
+                done();
+            });
+        })
+    })
+})
+
+describe('insert_replay', function(){
     describe('testContents', function(){
         it('insert Contents Result : ', function(done){
             request.post({
@@ -72,7 +84,19 @@ describe('insert_contents', function(){
     })
 })
 
-describe('select_contents', function(){
+describe('delete_replay', function(){
+    describe('testContents', function(){
+        it('select Contents Result : ', function(done){
+            var param = {userId: 'cccc@gmail.com'};
+            request.del(HOST_URL + '/delete/replay?' + querystring.stringify(param), function(error, response, body){
+                assert.equal('Success', body);
+                done();
+            });
+        })
+    })
+})
+
+describe('select_replay', function(){
     describe('testContents', function(){
         it('select Contents Result : ', function(done){
             var param = {parentContentsId: '333333'};

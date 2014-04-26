@@ -26,16 +26,25 @@
       <file leaf-file-name="db_connect.js" pinned="false" current="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/routes/db_connect.js">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="8" column="11" selection-start="240" selection-end="331" vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="1095">
+            <state line="23" column="42" selection-start="723" selection-end="728" vertical-scroll-proportion="0.0" vertical-offset="330" max-vertical-offset="1395">
               <folding />
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="contents.js" pinned="false" current="true" current-in-tab="true">
+      <file leaf-file-name="app.js" pinned="false" current="true" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/app.js">
+          <provider selected="true" editor-type-id="text-editor">
+            <state line="40" column="63" selection-start="1104" selection-end="1129" vertical-scroll-proportion="0.56626505" vertical-offset="365" max-vertical-offset="825">
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="contents.js" pinned="false" current="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/test/contents.js">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="78" column="99" selection-start="2532" selection-end="2650" vertical-scroll-proportion="0.96385545" vertical-offset="740" max-vertical-offset="1335">
+            <state line="90" column="23" selection-start="2978" selection-end="2981" vertical-scroll-proportion="0.0" vertical-offset="1130" max-vertical-offset="1695">
               <folding>
                 <element signature="e#0#46#0" expanded="false" />
               </folding>
@@ -64,10 +73,10 @@
         <option value="$PROJECT_DIR$/test/mocha/contents/contents.js" />
         <option value="$PROJECT_DIR$/test/mocha/contents.js" />
         <option value="$PROJECT_DIR$/views/index.ejs" />
-        <option value="$PROJECT_DIR$/app.js" />
         <option value="$PROJECT_DIR$/model/schema.js" />
         <option value="$PROJECT_DIR$/routes/db_connect.js" />
         <option value="$PROJECT_DIR$/test/contents.js" />
+        <option value="$PROJECT_DIR$/app.js" />
       </list>
     </option>
   </component>
@@ -631,13 +640,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/app.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="42" column="67" selection-start="1205" selection-end="1205" vertical-scroll-proportion="0.78313255" vertical-offset="305" max-vertical-offset="795">
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/model/schema.js">
       <provider selected="true" editor-type-id="text-editor">
         <state line="32" column="17" selection-start="871" selection-end="884" vertical-scroll-proportion="0.2839196" vertical-offset="367" max-vertical-offset="765">
@@ -647,17 +649,24 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/routes/db_connect.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="8" column="11" selection-start="240" selection-end="331" vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="1095">
+        <state line="23" column="42" selection-start="723" selection-end="728" vertical-scroll-proportion="0.0" vertical-offset="330" max-vertical-offset="1395">
           <folding />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/test/contents.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="78" column="99" selection-start="2532" selection-end="2650" vertical-scroll-proportion="0.96385545" vertical-offset="740" max-vertical-offset="1335">
+        <state line="90" column="23" selection-start="2978" selection-end="2981" vertical-scroll-proportion="0.0" vertical-offset="1130" max-vertical-offset="1695">
           <folding>
             <element signature="e#0#46#0" expanded="false" />
           </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="40" column="63" selection-start="1104" selection-end="1129" vertical-scroll-proportion="0.56626505" vertical-offset="365" max-vertical-offset="825">
+          <folding />
         </state>
       </provider>
     </entry>
