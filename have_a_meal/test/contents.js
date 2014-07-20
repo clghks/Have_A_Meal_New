@@ -65,6 +65,26 @@ describe('delete_contents', function(){
     })
 })
 
+describe('update_contents', function(){
+    describe('testContent', function(){
+        it('update Contents Result : ', function(done){
+            var param = {form: {
+                subject: 'test',
+                contents: 'test',
+            }};
+            request.put(HOST_URL + "/delete/contents", param, function (error, rsponse, body) {
+                if (error) {
+                    return console.error( error);
+                }
+                var board = JSON.parse(body);
+                console.log(board);
+                assert.equal('test', board.subject);
+                done();
+            });
+        })
+    })
+})
+
 describe('insert_replay', function(){
     describe('testContents', function(){
         it('insert Contents Result : ', function(done){

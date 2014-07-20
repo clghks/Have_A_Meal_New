@@ -39,6 +39,16 @@ exports.removeMongoDBContentsInfo = function(req, res){
     });
 };
 
+exports.updateMongoDBContentsInfo = function(req, res){
+    console.log('req.query = ' + req.query);
+    var contents = Contents.update(req.query, function(err, contents){
+        if (err){
+            return res.send(err.message);;
+        }
+        res.send("Success");
+    });
+};
+
 exports.insertMongoDBReplayContentsInfo = function(req, res){
     var replayContents = new ReplayContents(req.body);
 

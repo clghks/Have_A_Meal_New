@@ -9,6 +9,7 @@ var routes = require('./routes');
 var user = require('./routes/user');
 var http = require('http');
 var path = require('path');
+var content = require('./routes/content');
 var dbconnect = require('./routes/db_connect');
 
 
@@ -31,7 +32,9 @@ if ('development' == app.get('env')) {
   app.use(express.errorHandler());
 }
 
-app.get('/', routes.index);
+app.get('/', function(req, res) {
+    res.sendfile(__dirname + '/views/index.html');
+});
 app.get('/users', user.list);
 app.get('/googleOauth', user.googleOauth);
 app.get('/auth/google/callback', user.googleOauthCallbak);
@@ -39,10 +42,15 @@ app.get('/auth/google/callback', user.googleOauthCallbak);
 app.post('/insert/contents', dbconnect.insertMongoDBContentsInfo);
 app.get('/select/contents', dbconnect.selectMongoDBContentsInfo);
 app.del('/delete/contents', dbconnect.removeMongoDBContentsInfo);
+app.put('/update/contents', dbconnect.updateMongoDBContentsInfo);
+
 
 app.post('/insert/replay', dbconnect.insertMongoDBReplayContentsInfo);
 app.get('/select/replay', dbconnect.selectMongoDBReplayContentsInfo);
 app.del('/delete/replay', dbconnect.removeMongoDBReplayContentsInfo);
+
+// 상단 리스트
+app.get('/hotcontent', content.hotList);
 
 http.createServer(app).listen(app.get('port'), function(){
   console.log('Express server listening on port ' + app.get('port'));
