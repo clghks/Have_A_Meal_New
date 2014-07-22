@@ -1,81 +1,73 @@
 /**
- * Created by ChiHwan on 2014. 7. 13..
+ * Created by clghks on 2014-07-23.
  */
 $(function(){
-    /**
-     * Created by ChiHwan on 2014. 7. 13..
-     */
-    $(function(){
-        var HotContent = Backbone.Model.extend({
-            urlRoot: '/hotcontent'
-        });
-
-        var HotContentList = Backbone.Collection.extend({
-            model: HotContent,
-            url: '/hotcontent'
-        });
-
-        var HotContentView = Backbone.View.extend({
-            template: _.template('<img src="<%= imgUrl %>"><div class="container"><div class="carousel-caption"><h1><%= subject %></h1><p><%= contents %></p></div></div>'),
-            initialize: function(){
-                this.model.on('remove', this.remove, this);
-                this.model.on('change', this.reander, this);
-            },
-            reander: function(){
-                var attributes = this.model.toJSON();
-                $(this.el).html(this.template(attributes));
-                return this;
-            }
-        })
-
-        var HotContentListView = Backbone.View.extend({
-            el: '#hotItemCarousel',
-
-            initialize: function(){
-                this.hotItemCarousel = this.$('#hotItemCarousel');
-                this.hotItemIndicator = this.$('#hotItemIndicator');
-                this.hotItemCarouseInner = this.$('#hotItemCarouseInner');
-
-                this.collection.on('reset', this.addAll, this);
-                this.collection.on('add', this.addOn, this);
-            },
-            render: function(){
-
-                this.addAll();
-            },
-            addOn: function(content){
-
-                var hotContentView = new HotContentView({model:content, tagName: "div", className: "item"});
-
-                console.log(hotContentView.reander().el);
-                $('#hotItemCarouseInner').append(hotContentView.reander().el);
-                $('#hotItemIndicator').append('<li data-target="#hotItemCarousel" data-slide-to="4"></li>');
-
-            },
-            addActive: function(HotContent){
-                var hotContentView = new HotContentView({model:HotContent, tagName: "div", className: "item active"});
-                this.$('#hotItemCarouseInner').append(hotContentView.reander().el);
-                this.$('#hotItemIndicator').append('<li data-target="#hotItemCarousel" data-slide-to="5" class="active"></li>');
-            },
-            addAll: function(){
-
-                this.$('#hotItemCarouseInner').html('');
-                this.$('#hotItemIndicator').html('');
-                //this.addActive(this.collection.at(0));
-                console.log(this.$('#hotItemCarouseInner'));
-                this.collection.forEach(this.addOn, this);
-                console.log($('.carousel ol#hotItemIndicator'));
-                $("#hotItemCarouseInner div:eq(0)").addClass("active");
-
-            }
-        });
-
-        var hotContentList = new HotContentList();
-        var hotContentListView = new HotContentListView({collection:hotContentList});
-
-
-
-        hotContentList.fetch({success : function() {hotContentListView.render();}});
-
+    var Content = Backbone.Model.extend({
+        urlRoot: '/content'
     });
+
+    var ContentList = Backbone.Collection.extend({
+        model: Content,
+        url: '/content'
+    });
+
+    var ContentView = Backbone.View.extend({
+        tagName: 'div',
+        className: 'row featurette',
+        template: _.template(
+            '<div class="col-md-7">' +
+                '<h2 class="featurette-heading"><%= subject %></h2>' +
+                '<p class="lead"><%= contents %></p>' +
+            '</div>'),
+        initialize: function(){
+            this.model.on('remove', this.remove, this);
+            this.model.on('change', this.reander, this);
+        },
+        reander: function(){
+            var attributes = this.model.toJSON();
+            var html;
+            if(this.model.get('index') % 2 == 0){
+                html = '<div class="col-md-5">' +
+                            '<img class="featurette-image img-responsive" data-src="holder.js/500x500/auto" alt="500x500" src="'+ this.model.get('imgUrl') +'">' +
+                       '</div>' + this.template(attributes);
+            }else{
+                html = this.template(attributes) +
+                    '<div class="col-md-5">' +
+                        '<img class="featurette-image img-responsive" data-src="holder.js/500x500/auto" alt="500x500" src="'+ this.model.get('imgUrl') +'">' +
+                    '</div>';
+            }
+
+            $(this.el).html(html);
+            return this;
+        }
+    })
+
+    var ContentListView = Backbone.View.extend({
+        el: '#contentContainer',
+        index : 0,
+        initialize: function(){
+            this.collection.on('reset', this.addAll, this);
+            this.collection.on('add', this.addOne, this);
+        },
+        render: function(){
+            this.addAll();
+        },
+        addOne: function(content){
+            content.set({index:this.index});
+            var contentView = new ContentView({model:content});
+            $(this.el).append('<hr class="featurette-divider">');
+            $(this.el).append(contentView.reander().el);
+            this.index++;
+        },
+        addAll: function(){
+            $(this.el).html('');
+            this.index = 0;
+            this.collection.forEach(this.addOne, this);
+            $(this.el).append('<hr class="featurette-divider">');
+        }
+    });
+
+    var contentList = new ContentList();
+    var contentListView = new ContentListView({collection:contentList});
+    contentList.fetch({reset:true});
 });

@@ -51,6 +51,7 @@ app.del('/delete/replay', dbconnect.removeMongoDBReplayContentsInfo);
 
 // 상단 리스트
 app.get('/hotcontent', content.hotList);
+app.get('/content', content.contentList);
 
 http.createServer(app).listen(app.get('port'), function(){
   console.log('Express server listening on port ' + app.get('port'));
