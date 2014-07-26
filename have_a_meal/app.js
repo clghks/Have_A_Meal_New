@@ -11,7 +11,7 @@ var http = require('http');
 var path = require('path');
 var content = require('./routes/content');
 var dbconnect = require('./routes/db_connect');
-
+var filemanager = require('./routes/file_manager');
 
 var app = express();
 
@@ -20,12 +20,15 @@ app.set('port', process.env.PORT || 3000);
 app.set('views', path.join(__dirname, 'views'));
 app.set('view engine', 'ejs');
 app.use(express.favicon());
+// 위치 조심하자!!!
+app.use(express.bodyParser( { keepExtensions: true, uploadDir: __dirname + '/app/uploads' } ));
 app.use(express.logger('dev'));
 app.use(express.json());
 app.use(express.urlencoded());
 app.use(express.methodOverride());
 app.use(app.router);
 app.use(express.static(path.join(__dirname, 'public')));
+
 
 // development only
 if ('development' == app.get('env')) {
@@ -35,6 +38,11 @@ if ('development' == app.get('env')) {
 app.get('/', function(req, res) {
     res.sendfile(__dirname + '/views/index.html');
 });
+
+app.get('/file_upload_test', function(req, res) {
+    res.sendfile(__dirname + '/views/file_upload_test.html');
+});
+
 app.get('/users', user.list);
 app.get('/googleOauth', user.googleOauth);
 app.get('/auth/google/callback', user.googleOauthCallbak);
@@ -52,6 +60,10 @@ app.del('/delete/replay', dbconnect.removeMongoDBReplayContentsInfo);
 // 상단 리스트
 app.get('/hotcontent', content.hotList);
 app.get('/content', content.contentList);
+
+// 파일 업로드
+app.post('/file/upload', filemanager.fileUpload);
+
 
 http.createServer(app).listen(app.get('port'), function(){
   console.log('Express server listening on port ' + app.get('port'));
