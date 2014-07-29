@@ -23,6 +23,16 @@ $(function(){
             this.model.on('remove', this.remove, this);
             this.model.on('change', this.reander, this);
         },
+        events: {
+            "click .col-md-7" : "showModal",
+            "click .featurette-image" : "showModal"
+        },
+        showModal: function(e){
+            $('#myModal').modal();
+            $('#myModalLabel').html(this.model.get('subject'));
+            $('#modalImage').attr('src', this.model.get('imgUrl'));
+            $('#modalContent').html(this.model.get('contents'));
+        },
         reander: function(){
             var attributes = this.model.toJSON();
             var html;
